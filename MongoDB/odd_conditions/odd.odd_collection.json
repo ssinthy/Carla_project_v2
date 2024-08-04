@@ -1,0 +1,329 @@
+[{
+  "_id": {
+    "$oid": "667d781827704e647964a282"
+  },
+  "conditions": [
+    {
+      "OpCondOr": {
+        "opconds": [
+          {
+            "OpCondImply": {
+              "opcond_if": {
+                "OpCondAnd": {
+                  "opconds": [
+                    {
+                      "OpCondSet": {
+                        "taxonomies": [
+                          "EGO_VEHICLE",
+                          "ROADTYPE"
+                        ],
+                        "boundset": [
+                          "motorway"
+                        ]
+                      }
+                    },
+                    {
+                      "OpCondSet": {
+                        "taxonomies": [
+                          "EMERGENCY_VEHICLE",
+                          "ROADTYPE"
+                        ],
+                        "boundset": [
+                          "motorway"
+                        ]
+                      }
+                    },
+                    {
+                      "OpCondSet": {
+                        "taxonomies": [
+                          "EMERGENCY_VEHICLE",
+                          "RELATIVE_POSITION"
+                        ],
+                        "boundset": [
+                          "subject_lane"
+                        ]
+                      }
+                    }
+                  ]
+                }
+              },
+              "opcond_then": {
+                "OpCondAnd": {
+                  "opconds": [
+                    {
+                      "OpCondRange": {
+                        "taxonomies": [
+                          "EGO_VEHICLE",
+                          "SPEED"
+                        ],
+                        "min": 0,
+                        "max": 70
+                      }
+                    },
+                    {
+                      "OpCondRange": {
+                        "taxonomies": [
+                          "EMERGENCY_VEHICLE",
+                          "SPEED"
+                        ],
+                        "min": 1,
+                        "max": 120
+                      }
+                    },
+                    {
+                      "OpCondRange": {
+                        "taxonomies": [
+                          "EMERGENCY_VEHICLE",
+                          "DISTANCE"
+                        ],
+                        "min": 50,
+                        "max": 10000000
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          {
+            "OpCondImply": {
+              "opcond_if": {
+                "OpCondAnd": {
+                  "opconds": [
+                    {
+                      "OpCondSet": {
+                        "taxonomies": [
+                          "EGO_VEHICLE",
+                          "ROADTYPE"
+                        ],
+                        "boundset": [
+                          "motorway"
+                        ]
+                      }
+                    },
+                    {
+                      "OpCondSet": {
+                        "taxonomies": [
+                          "EMERGENCY_VEHICLE",
+                          "ROADTYPE"
+                        ],
+                        "boundset": [
+                          "motorway"
+                        ]
+                      }
+                    },
+                    {
+                      "OpCondSet": {
+                        "taxonomies": [
+                          "EMERGENCY_VEHICLE",
+                          "RELATIVE_POSITION"
+                        ],
+                        "boundset": [
+                          "opposite_lane"
+                        ]
+                      }
+                    }
+                  ]
+                }
+              },
+              "opcond_then": {
+                "OpCondAnd": {
+                  "opconds": [
+                    {
+                      "OpCondRange": {
+                        "taxonomies": [
+                          "EGO_VEHICLE",
+                          "SPEED"
+                        ],
+                        "min": 0,
+                        "max": 70
+                      }
+                    },
+                    {
+                      "OpCondRange": {
+                        "taxonomies": [
+                          "EMERGENCY_VEHICLE",
+                          "SPEED"
+                        ],
+                        "min": 1,
+                        "max": 120
+                      }
+                    },
+                    {
+                      "OpCondRange": {
+                        "taxonomies": [
+                          "EMERGENCY_VEHICLE",
+                          "DISTANCE"
+                        ],
+                        "min": 20,
+                        "max": 10000000
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          {
+            "OpCondImply": {
+              "opcond_if": {
+                "OpCondAnd": {
+                  "opconds": [
+                    {
+                      "OpCondSet": {
+                        "taxonomies": [
+                          "EGO_VEHICLE",
+                          "ROADTYPE"
+                        ],
+                        "boundset": [
+                          "motorway"
+                        ]
+                      }
+                    },
+                    {
+                      "OpCondSet": {
+                        "taxonomies": [
+                          "EMERGENCY_VEHICLE",
+                          "ROADTYPE"
+                        ],
+                        "boundset": [
+                          "motorway"
+                        ]
+                      }
+                    },
+                    {
+                      "OpCondSet": {
+                        "taxonomies": [
+                          "EMERGENCY_VEHICLE",
+                          "RELATIVE_POSITION"
+                        ],
+                        "boundset": [
+                          "subject_lane"
+                        ]
+                      }
+                    }
+                  ]
+                }
+              },
+              "opcond_then": {
+                "OpCondAnd": {
+                  "opconds": [
+                    {
+                      "OpCondRange": {
+                        "taxonomies": [
+                          "EGO_VEHICLE",
+                          "SPEED"
+                        ],
+                        "min": 0,
+                        "max": 70
+                      }
+                    },
+                    {
+                      "OpCondRange": {
+                        "taxonomies": [
+                          "EMERGENCY_VEHICLE",
+                          "SPEED"
+                        ],
+                        "min": 0,
+                        "max": 0
+                      }
+                    },
+                    {
+                      "OpCondRange": {
+                        "taxonomies": [
+                          "EMERGENCY_VEHICLE",
+                          "DISTANCE"
+                        ],
+                        "min": 10,
+                        "max": 10000000
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          {
+            "OpCondImply": {
+              "opcond_if": {
+                "OpCondAnd": {
+                  "opconds": [
+                    {
+                      "OpCondSet": {
+                        "taxonomies": [
+                          "EGO_VEHICLE",
+                          "ROADTYPE"
+                        ],
+                        "boundset": [
+                          "motorway"
+                        ]
+                      }
+                    },
+                    {
+                      "OpCondSet": {
+                        "taxonomies": [
+                          "EMERGENCY_VEHICLE",
+                          "ROADTYPE"
+                        ],
+                        "boundset": [
+                          "motorway"
+                        ]
+                      }
+                    },
+                    {
+                      "OpCondSet": {
+                        "taxonomies": [
+                          "EMERGENCY_VEHICLE",
+                          "RELATIVE_POSITION"
+                        ],
+                        "boundset": [
+                          "opposite_lane"
+                        ]
+                      }
+                    }
+                  ]
+                }
+              },
+              "opcond_then": {
+                "OpCondAnd": {
+                  "opconds": [
+                    {
+                      "OpCondRange": {
+                        "taxonomies": [
+                          "EGO_VEHICLE",
+                          "SPEED"
+                        ],
+                        "min": 0,
+                        "max": 70
+                      }
+                    },
+                    {
+                      "OpCondRange": {
+                        "taxonomies": [
+                          "EMERGENCY_VEHICLE",
+                          "SPEED"
+                        ],
+                        "min": 0,
+                        "max": 0
+                      }
+                    },
+                    {
+                      "OpCondRange": {
+                        "taxonomies": [
+                          "EMERGENCY_VEHICLE",
+                          "DISTANCE"
+                        ],
+                        "min": 3,
+                        "max": 10000000
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  ]
+}]
