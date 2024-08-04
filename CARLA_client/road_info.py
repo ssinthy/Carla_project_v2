@@ -16,14 +16,6 @@ def is_emv_in_same_directional_lane(waypoint1, waypoint2):
     return ((waypoint1.lane_id < 0 and waypoint2.lane_id < 0) or
             (waypoint1.lane_id > 0 and waypoint2.lane_id > 0))
 
-def get_roadtype_from_api(road_id):
-    response = requests.get(f"http://127.0.0.1:5000/api/roadinfo/{road_id}")
-    if response.status_code == 200:
-        return response.json()
-    else:
-        print(f"Failed to get road type data. Status code: {response.status_code}")
-        return None
-    
 def get_odd_from_api(id):
     response = requests.get(f"http://127.0.0.1:5000/api/odd/{id}")
     if response.status_code == 200:
@@ -66,16 +58,6 @@ def monitor_odd(ego_vehicle, emergency_vehicle, world):
         if waypoint_ego.is_junction or waypoint_emv.is_junction:
             continue
 
-        # Get raoad info from road id
-        road_info_ego_vehicle = get_roadtype_from_api(waypoint_ego.road_id)
-        if not road_info_ego_vehicle:
-            continue
-
-        # Get raoad info from road id
-        road_info_emv_vehicle = get_roadtype_from_api(waypoint_emv.road_id)
-        if not road_info_emv_vehicle:
-            continue
-
         emv_relative_pos = "unknown"
 
         if waypoint_ego.road_id == waypoint_emv.road_id:
@@ -90,12 +72,10 @@ def monitor_odd(ego_vehicle, emergency_vehicle, world):
         # Construct avdata from road info. Include all necessary information in avdata
         avdata = {
             Taxonomy.EGO_VEHICLE: {
-                Taxonomy.ROADTYPE: road_info_ego_vehicle[Taxonomy.ROADTYPE],
                 Taxonomy.SPEED: round(ego_vehicle_velocity, 2)
             },
             Taxonomy.EMERGENCY_VEHICLE: {
                 Taxonomy.SPEED: round(emergency_vehicle_velocity, 2),
-                Taxonomy.ROADTYPE: road_info_emv_vehicle[Taxonomy.ROADTYPE],
                 Taxonomy.DISTANCE: round(distance_between_ego_and_emv, 2),
                 Taxonomy.RELATIVE_POSITION: emv_relative_pos
             }

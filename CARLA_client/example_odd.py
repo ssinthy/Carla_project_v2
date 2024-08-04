@@ -74,8 +74,6 @@ odd.add_in_operating_condition(OpCondImply(opcond_if=OpCondAnd(
 # EMV on motoway must maintain a safe distance of 50m
 odd.add_in_operating_condition(OpCondOr(opconds=[OpCondImply(opcond_if=OpCondAnd(
                                                                 opconds=[
-                                                                    OpCondSet(taxonomies=[Taxonomy.EGO_VEHICLE, Taxonomy.ROADTYPE], boundset=["motorway"]),
-                                                                    OpCondSet(taxonomies=[Taxonomy.EMERGENCY_VEHICLE, Taxonomy.ROADTYPE], boundset=["motorway"]),
                                                                     OpCondSet(taxonomies=[Taxonomy.EMERGENCY_VEHICLE, Taxonomy.RELATIVE_POSITION], boundset=["subject_lane"]),
                                                                 ]),
                                                             opcond_then=OpCondAnd(
@@ -86,8 +84,6 @@ odd.add_in_operating_condition(OpCondOr(opconds=[OpCondImply(opcond_if=OpCondAnd
                                                                 ])),
                                                 OpCondImply(opcond_if=OpCondAnd(
                                                                 opconds=[
-                                                                    OpCondSet(taxonomies=[Taxonomy.EGO_VEHICLE, Taxonomy.ROADTYPE], boundset=["motorway"]),
-                                                                    OpCondSet(taxonomies=[Taxonomy.EMERGENCY_VEHICLE, Taxonomy.ROADTYPE], boundset=["motorway"]),
                                                                     OpCondSet(taxonomies=[Taxonomy.EMERGENCY_VEHICLE, Taxonomy.RELATIVE_POSITION], boundset=["opposite_lane"]),
                                                                 ]),
                                                                 opcond_then=OpCondAnd(
@@ -98,8 +94,6 @@ odd.add_in_operating_condition(OpCondOr(opconds=[OpCondImply(opcond_if=OpCondAnd
                                                                 ])),
                                                 OpCondImply(opcond_if=OpCondAnd(
                                                                 opconds=[
-                                                                    OpCondSet(taxonomies=[Taxonomy.EGO_VEHICLE, Taxonomy.ROADTYPE], boundset=["motorway"]),
-                                                                    OpCondSet(taxonomies=[Taxonomy.EMERGENCY_VEHICLE, Taxonomy.ROADTYPE], boundset=["motorway"]),
                                                                     OpCondSet(taxonomies=[Taxonomy.EMERGENCY_VEHICLE, Taxonomy.RELATIVE_POSITION], boundset=["subject_lane"]),
                                                                     OpCondRange(taxonomies=[Taxonomy.EMERGENCY_VEHICLE, Taxonomy.SPEED], min=0.0, max=0.0)
                                                                 ]),
@@ -110,8 +104,6 @@ odd.add_in_operating_condition(OpCondOr(opconds=[OpCondImply(opcond_if=OpCondAnd
                                                                 ])),
                                                 OpCondImply(opcond_if=OpCondAnd(
                                                                 opconds=[
-                                                                    OpCondSet(taxonomies=[Taxonomy.EGO_VEHICLE, Taxonomy.ROADTYPE], boundset=["motorway"]),
-                                                                    OpCondSet(taxonomies=[Taxonomy.EMERGENCY_VEHICLE, Taxonomy.ROADTYPE], boundset=["motorway"]),
                                                                     OpCondSet(taxonomies=[Taxonomy.EMERGENCY_VEHICLE, Taxonomy.RELATIVE_POSITION], boundset=["opposite_lane"]),
                                                                     OpCondRange(taxonomies=[Taxonomy.EMERGENCY_VEHICLE, Taxonomy.SPEED], min=0.0, max=0.0)
                                                                 ]),

@@ -2,7 +2,6 @@ from enum import Enum
 from operating_conditions import init_opcond_from_json
 
 class Taxonomy:
-    ROADTYPE = "ROADTYPE"
     TIME_OF_DAY = "TIME_OF_DAY"
     RAIN = "RAIN"
     SPEED = "SPEED"

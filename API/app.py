@@ -27,24 +27,6 @@ def get_data(id):
     except Exception as e:
         return jsonify({'error': str(e)}), 500
     
-@app.route('/api/roadinfo/<key>', methods=['GET'])
-def get_roadtype(key):
-    try:
-        key = int(key)
-        # Retrieve data from the MongoDB collection
-        query = { f"{key}.ROADTYPE": { "$exists": True } }
-        projection = { f"{key}.ROADTYPE": 1, "_id": 0 }
-        document = db.roadinfo.find_one(query, projection)
-
-        if document and str(key) in document:
-            roadtype_value = document[str(key)].get("ROADTYPE")
-            return jsonify({"ROADTYPE": roadtype_value})
-        else:
-            return jsonify({"error": "Document not found or ROADTYPE not found"}), 404
-    except Exception as e:
-        return jsonify({'error': str(e)}), 500
-    
-    
 
 if __name__ == '__main__':
     app.run(debug=True)
