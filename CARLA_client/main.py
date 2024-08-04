@@ -1,11 +1,10 @@
 from vehicle_control import *
 from road_info import monitor_odd
 import threading
-from carla_envornmental_condition import set_up_environment
 
 def main():
     # Main execution
-    client, world = initialize_carla()
+    client, world, time_of_day, rain_status, fog_condition, fog_visibility, wind_force, cloud_condition = initialize_carla()
     ego_vehicle, emergency_vehicle = spawn_vehicle(world)
     camera, sensor_data = setup_camera(world, ego_vehicle)
 

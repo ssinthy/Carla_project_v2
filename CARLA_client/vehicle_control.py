@@ -3,6 +3,7 @@ import random
 import numpy as np
 import pygame
 import time
+from carla_envornmental_condition import set_up_environment
 
 def initialize_carla():
     client = carla.Client('localhost', 2000)
@@ -19,8 +20,8 @@ def initialize_carla():
         fog_density=0.0,
         wetness=0.0,
     )
-    world.set_weather(weather)
-    return client, world
+    time_of_day, rain_status, fog_condition, fog_visibility, wind_force, cloud_condition = set_up_environment(world, weather)
+    return client, world, time_of_day, rain_status, fog_condition, fog_visibility, wind_force, cloud_condition
 
 def spawn_vehicle(world):
     bp_lib = world.get_blueprint_library()

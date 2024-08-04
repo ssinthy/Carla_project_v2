@@ -17,8 +17,8 @@ def get_fog_condition(weather):
     else:
         return "Very dense fog"
     
-# Function to classify fog distance based on fog distance value
-def classify_fog_distance(weather):
+# Function to get visibilty range based on fog distance value
+def get_fog_visibility(weather):
     fog_distance = weather.fog_distance
 
     if fog_distance > 1000:
@@ -111,12 +111,26 @@ def set_environmental_condition(world, weather, cloudiness, precipitation, sun_a
 
 def set_up_environment(world, weather):
 
-    set_environmental_condition(world, weather, 30, 30, 30, 30, 30, 30)
+    set_environmental_condition(world, weather, cloudiness = 30, precipitation = 80, sun_altitude_angle = 30, 
+                                wind_intensity = 30, fog_density = 30, fog_distance = 30)
+    time.sleep(5)
 
     # Get day of time information
     time_of_day = get_time_of_day(weather)
 
     # Get rain status
     rain_status = get_rain_status(weather)
+    
+    # Get fog condition
+    fog_condition = get_fog_condition(weather)
+    
+    # Get fog visibility
+    fog_visibility = get_fog_visibility(weather)
+    
+    # Get wind force
+    wind_force = get_wind_force(weather)
+    
+    # Get cloud condition
+    cloud_condition = get_cloud_condition(weather)
 
-    return time_of_day, rain_status
+    return time_of_day, rain_status, fog_condition, fog_visibility, wind_force, cloud_condition
