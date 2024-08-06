@@ -30,10 +30,18 @@ def spawn_vehicle(world):
     ego_vehicle = world.try_spawn_actor(vehicle_bp, spawn_points[0])
     
     # ego_vehicle.set_autopilot(False)
+
+    # Set spectator manual navigation
+    spectator = world.get_spectator()
+    location = ego_vehicle.get_location()
+    spectator_pos = carla.Transform(location + carla.Location(x=20,y=10,z=4),
+                            carla.Rotation(yaw=-155))
+    transform = carla.Transform(ego_vehicle.get_transform().transform(carla.Location(x=-4, z=2)), ego_vehicle.get_transform().rotation)
+    spectator.set_transform(spectator_pos)
     # Get the emergency vehicle
     emergency_bp = world.get_blueprint_library().find('vehicle.carlamotors.firetruck')
     # Spawn the emergency vehicle
-    emergency_vehicle = world.spawn_actor(emergency_bp, spawn_points[4])
+    emergency_vehicle = world.spawn_actor(emergency_bp, spawn_points[29])
     # ego_vehicle.set_autopilot(True)
     emergency_vehicle.set_autopilot(True)
     return ego_vehicle, emergency_vehicle
@@ -41,9 +49,6 @@ def spawn_vehicle(world):
 def set_spectator(world, vehicle):
     while vehicle is not None:
         spectator = world.get_spectator()
-        location = vehicle.get_location()
-        spectator_pos = carla.Transform(location + carla.Location(x=20,y=10,z=4),
-                                carla.Rotation(yaw=-155))
         transform = carla.Transform(vehicle.get_transform().transform(carla.Location(x=-4, z=2)), vehicle.get_transform().rotation)
         spectator.set_transform(transform)
         

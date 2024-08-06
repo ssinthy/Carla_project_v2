@@ -37,6 +37,10 @@ def monitor_odd(ego_vehicle, emergency_vehicle, world):
         return
     map = world.get_map()
 
+    # Fetch all ODDs from database and make odd objects
+    odd_json = get_odd_from_api("667d781827704e647964a282")
+
+
     while True:
         time.sleep(1)
          # Get the current location of the vehicle
@@ -80,9 +84,6 @@ def monitor_odd(ego_vehicle, emergency_vehicle, world):
                 Taxonomy.RELATIVE_POSITION: emv_relative_pos
             }
         }
-
-        # Fetch all ODDs from database and make odd objects
-        odd_json = get_odd_from_api("667d781827704e647964a282")
 
         # Evaluate the avdata against ODD
         if not odd_json:

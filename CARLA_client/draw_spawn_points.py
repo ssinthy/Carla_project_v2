@@ -32,13 +32,13 @@ spectator_pos = carla.Transform(first_spawn_point.location + carla.Location(x=20
                             carla.Rotation(yaw = first_spawn_point.rotation.yaw -155))
 spectator.set_transform(spectator_pos)
 
-'''
+
 for i in range(0, len(spawn_points)):
     str = f"point {i}"
     draw_string(world, spawn_points[i].location, str)
-'''
 
-draw_hud_box(world, first_spawn_point.location)
+
+# draw_hud_box(world, first_spawn_point.location)
 # Add some delay to visualize the changes
-time.sleep(50)
+#time.sleep(50)
 
