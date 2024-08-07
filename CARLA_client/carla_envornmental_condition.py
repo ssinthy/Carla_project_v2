@@ -111,8 +111,8 @@ def set_environmental_condition(world, weather, cloudiness, precipitation, sun_a
 
 def set_up_environment(world, weather):
 
-    set_environmental_condition(world, weather, cloudiness = 30, precipitation = 80, sun_altitude_angle = 30, 
-                                wind_intensity = 30, fog_density = 30, fog_distance = 30)
+    set_environmental_condition(world, weather, cloudiness = 0, precipitation = 0, sun_altitude_angle = 90, 
+                                wind_intensity = 0, fog_density = 0, fog_distance = 0)
     time.sleep(5)
 
     # Get day of time information

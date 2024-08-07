@@ -37,11 +37,11 @@ def spawn_vehicle(world):
     spectator_pos = carla.Transform(location + carla.Location(x=20,y=10,z=4),
                             carla.Rotation(yaw=-155))
     transform = carla.Transform(ego_vehicle.get_transform().transform(carla.Location(x=-4, z=2)), ego_vehicle.get_transform().rotation)
-    spectator.set_transform(spectator_pos)
+    # spectator.set_transform(spectator_pos)
     # Get the emergency vehicle
     emergency_bp = world.get_blueprint_library().find('vehicle.carlamotors.firetruck')
-    # Spawn the emergency vehicle
-    emergency_vehicle = world.spawn_actor(emergency_bp, spawn_points[29])
+    # Spawn the emergency vehicle 29 = on another road near to junction
+    emergency_vehicle = world.spawn_actor(emergency_bp, spawn_points[30])
     # ego_vehicle.set_autopilot(True)
     emergency_vehicle.set_autopilot(True)
     return ego_vehicle, emergency_vehicle
@@ -49,7 +49,7 @@ def spawn_vehicle(world):
 def set_spectator(world, vehicle):
     while vehicle is not None:
         spectator = world.get_spectator()
-        transform = carla.Transform(vehicle.get_transform().transform(carla.Location(x=-4, z=2)), vehicle.get_transform().rotation)
+        transform = carla.Transform(vehicle.get_transform().transform(carla.Location(x=-20, y= 0, z=8)), vehicle.get_transform().rotation)
         spectator.set_transform(transform)
         
 def setup_camera(world, vehicle):

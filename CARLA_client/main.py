@@ -9,7 +9,7 @@ def main():
     camera, sensor_data = setup_camera(world, ego_vehicle)
 
     threading.Thread(target=monitor_odd, args=[ego_vehicle, emergency_vehicle, world]).start()
-    # threading.Thread(target=set_spectator, args=[world, ego_vehicle]).start()
+    threading.Thread(target=set_spectator, args=[world, ego_vehicle]).start()
     manual_control(world, ego_vehicle, sensor_data)
 
     # Cleanup
