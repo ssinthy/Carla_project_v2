@@ -42,7 +42,7 @@ def monitor_odd(ego_vehicle, emergency_vehicle, world):
 
 
     while True:
-        time.sleep(1)
+        time.sleep(0.5)
          # Get the current location of the vehicle
         ego_vehicle_location = ego_vehicle.get_location()
         emergency_vehicle_location = emergency_vehicle.get_location()
@@ -59,10 +59,10 @@ def monitor_odd(ego_vehicle, emergency_vehicle, world):
         # Get emergency vehicle velocity
         emergency_vehicle_velocity = get_speed(emergency_vehicle)
 
-        if waypoint_ego.is_junction or waypoint_emv.is_junction:
-            continue
+        emv_relative_pos = "on_other_road"
 
-        emv_relative_pos = "unknown"
+        if waypoint_emv.is_junction:
+            emv_relative_pos = "on_junction"
 
         if waypoint_ego.road_id == waypoint_emv.road_id:
             # Check the condition and set lane_type if condition is true
@@ -85,6 +85,8 @@ def monitor_odd(ego_vehicle, emergency_vehicle, world):
             }
         }
 
+        print(avdata)
+
         # Evaluate the avdata against ODD
         if not odd_json:
             continue
@@ -97,9 +99,9 @@ def monitor_odd(ego_vehicle, emergency_vehicle, world):
             print("Inside ODD")
         else:
             print("Outside ODD")
-            world.debug.draw_string(ego_vehicle_location, "Out of ODD", draw_shadow=False, color=carla.Color(255,0,0), life_time=1.0)
+            world.debug.draw_string(ego_vehicle_location, "Out of ODD", draw_shadow=False, color=carla.Color(255,0,0), life_time=0.5)
             bbox = ego_vehicle.bounding_box
             bbox.location += ego_vehicle.get_transform().location
 
             # Draw the bounding box
-            world.debug.draw_box(bbox, ego_vehicle.get_transform().rotation, thickness=0.1, color=carla.Color(255, 0, 0, 0), life_time=1.0)
+            world.debug.draw_box(bbox, ego_vehicle.get_transform().rotation, thickness=0.1, color=carla.Color(255, 0, 0, 0), life_time=0.5)

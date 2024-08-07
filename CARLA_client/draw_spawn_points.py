@@ -2,7 +2,7 @@ import carla
 import time
 
 def draw_string(world, location, text="first"):
-    world.debug.draw_string(location, text, draw_shadow=False, color=carla.Color(255,0,0), life_time=50.0)
+    world.debug.draw_string(location, text, draw_shadow=False, color=carla.Color(255,0,0), life_time=100.0)
 
 def draw_point(world, location, size=0.1):
     world.debug.draw_point(location, size, carla.Color(255, 0, 0, 0), life_time=50.0)

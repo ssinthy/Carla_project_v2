@@ -75,43 +75,35 @@ odd.add_in_operating_condition(OpCondImply(opcond_if=OpCondAnd(
 odd.add_in_operating_condition(OpCondOr(opconds=[OpCondImply(opcond_if=OpCondAnd(
                                                                 opconds=[
                                                                     OpCondSet(taxonomies=[Taxonomy.EMERGENCY_VEHICLE, Taxonomy.RELATIVE_POSITION], boundset=["subject_lane"]),
-                                                                ]),
-                                                            opcond_then=OpCondAnd(
-                                                                opconds=[
-                                                                    OpCondRange(taxonomies=[Taxonomy.EMERGENCY_VEHICLE, Taxonomy.DISTANCE], min=50, max=INFINITY),
                                                                     OpCondRange(taxonomies=[Taxonomy.EGO_VEHICLE, Taxonomy.SPEED], min=0.0, max=70.0),
                                                                     OpCondRange(taxonomies=[Taxonomy.EMERGENCY_VEHICLE, Taxonomy.SPEED], min=1.0, max=INFINITY)
-                                                                ])),
+                                                                ]),
+                                                            opcond_then=OpCondRange(taxonomies=[Taxonomy.EMERGENCY_VEHICLE, Taxonomy.DISTANCE], min=50, max=INFINITY)
+                                                                ),
                                                 OpCondImply(opcond_if=OpCondAnd(
                                                                 opconds=[
                                                                     OpCondSet(taxonomies=[Taxonomy.EMERGENCY_VEHICLE, Taxonomy.RELATIVE_POSITION], boundset=["opposite_lane"]),
-                                                                ]),
-                                                                opcond_then=OpCondAnd(
-                                                                opconds=[
-                                                                    OpCondRange(taxonomies=[Taxonomy.EMERGENCY_VEHICLE, Taxonomy.DISTANCE], min=20, max=INFINITY),
                                                                     OpCondRange(taxonomies=[Taxonomy.EGO_VEHICLE, Taxonomy.SPEED], min=0.0, max=70.0),
                                                                     OpCondRange(taxonomies=[Taxonomy.EMERGENCY_VEHICLE, Taxonomy.SPEED], min=1.0, max=INFINITY)
-                                                                ])),
+                                                                ]),
+                                                                opcond_then=OpCondRange(taxonomies=[Taxonomy.EMERGENCY_VEHICLE, Taxonomy.DISTANCE], min=5, max=INFINITY),
+                                                                ),
                                                 OpCondImply(opcond_if=OpCondAnd(
                                                                 opconds=[
                                                                     OpCondSet(taxonomies=[Taxonomy.EMERGENCY_VEHICLE, Taxonomy.RELATIVE_POSITION], boundset=["subject_lane"]),
-                                                                    OpCondRange(taxonomies=[Taxonomy.EMERGENCY_VEHICLE, Taxonomy.SPEED], min=0.0, max=0.0)
-                                                                ]),
-                                                                opcond_then=OpCondAnd(
-                                                                opconds=[
-                                                                    OpCondRange(taxonomies=[Taxonomy.EMERGENCY_VEHICLE, Taxonomy.DISTANCE], min=10, max=INFINITY),
+                                                                    OpCondRange(taxonomies=[Taxonomy.EMERGENCY_VEHICLE, Taxonomy.SPEED], min=0.0, max=0.0),
                                                                     OpCondRange(taxonomies=[Taxonomy.EGO_VEHICLE, Taxonomy.SPEED], min=0.0, max=70.0)
-                                                                ])),
+                                                                ]),
+                                                                opcond_then=OpCondRange(taxonomies=[Taxonomy.EMERGENCY_VEHICLE, Taxonomy.DISTANCE], min=10, max=INFINITY),
+                                                                ),
                                                 OpCondImply(opcond_if=OpCondAnd(
                                                                 opconds=[
                                                                     OpCondSet(taxonomies=[Taxonomy.EMERGENCY_VEHICLE, Taxonomy.RELATIVE_POSITION], boundset=["opposite_lane"]),
-                                                                    OpCondRange(taxonomies=[Taxonomy.EMERGENCY_VEHICLE, Taxonomy.SPEED], min=0.0, max=0.0)
-                                                                ]),
-                                                                opcond_then=OpCondAnd(
-                                                                opconds=[
-                                                                    OpCondRange(taxonomies=[Taxonomy.EMERGENCY_VEHICLE, Taxonomy.DISTANCE], min=3, max=INFINITY),
+                                                                    OpCondRange(taxonomies=[Taxonomy.EMERGENCY_VEHICLE, Taxonomy.SPEED], min=0.0, max=0.0),
                                                                     OpCondRange(taxonomies=[Taxonomy.EGO_VEHICLE, Taxonomy.SPEED], min=0.0, max=70.0)
-                                                                ]))
+                                                                ]),
+                                                                opcond_then=OpCondRange(taxonomies=[Taxonomy.EMERGENCY_VEHICLE, Taxonomy.DISTANCE], min=3, max=INFINITY),
+                                                                )
                                                 ]))
 
 

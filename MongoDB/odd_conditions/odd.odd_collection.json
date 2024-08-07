@@ -21,11 +21,45 @@
                           "subject_lane"
                         ]
                       }
+                    },
+                    {
+                      "OpCondRange": {
+                        "taxonomies": [
+                          "EMERGENCY_VEHICLE",
+                          "SPEED"
+                        ],
+                        "min": 1,
+                        "max": 120
+                      }
+                    },
+                    {
+                      "OpCondRange": {
+                        "taxonomies": [
+                          "EGO_VEHICLE",
+                          "SPEED"
+                        ],
+                        "min": 0,
+                        "max": 70
+                      }
                     }
                   ]
                 }
               },
               "opcond_then": {
+                "OpCondRange": {
+                  "taxonomies": [
+                    "EMERGENCY_VEHICLE",
+                    "DISTANCE"
+                  ],
+                  "min": 50,
+                  "max": 10000000
+                }
+              }
+            }
+          },
+          {
+            "OpCondImply": {
+              "opcond_if": {
                 "OpCondAnd": {
                   "opconds": [
                     {
@@ -48,26 +82,6 @@
                         "max": 120
                       }
                     },
-                    {
-                      "OpCondRange": {
-                        "taxonomies": [
-                          "EMERGENCY_VEHICLE",
-                          "DISTANCE"
-                        ],
-                        "min": 50,
-                        "max": 10000000
-                      }
-                    }
-                  ]
-                }
-              }
-            }
-          },
-          {
-            "OpCondImply": {
-              "opcond_if": {
-                "OpCondAnd": {
-                  "opconds": [
                     {
                       "OpCondSet": {
                         "taxonomies": [
@@ -83,6 +97,20 @@
                 }
               },
               "opcond_then": {
+                "OpCondRange": {
+                  "taxonomies": [
+                    "EMERGENCY_VEHICLE",
+                    "DISTANCE"
+                  ],
+                  "min": 5,
+                  "max": 10000000
+                }
+              }
+            }
+          },
+          {
+            "OpCondImply": {
+              "opcond_if": {
                 "OpCondAnd": {
                   "opconds": [
                     {
@@ -101,30 +129,10 @@
                           "EMERGENCY_VEHICLE",
                           "SPEED"
                         ],
-                        "min": 1,
-                        "max": 120
+                        "min": 0,
+                        "max": 0
                       }
                     },
-                    {
-                      "OpCondRange": {
-                        "taxonomies": [
-                          "EMERGENCY_VEHICLE",
-                          "DISTANCE"
-                        ],
-                        "min": 20,
-                        "max": 10000000
-                      }
-                    }
-                  ]
-                }
-              }
-            }
-          },
-          {
-            "OpCondImply": {
-              "opcond_if": {
-                "OpCondAnd": {
-                  "opconds": [
                     {
                       "OpCondSet": {
                         "taxonomies": [
@@ -140,6 +148,20 @@
                 }
               },
               "opcond_then": {
+                "OpCondRange": {
+                  "taxonomies": [
+                    "EMERGENCY_VEHICLE",
+                    "DISTANCE"
+                  ],
+                  "min": 50,
+                  "max": 10000000
+                }
+              }
+            }
+          },
+          {
+            "OpCondImply": {
+              "opcond_if": {
                 "OpCondAnd": {
                   "opconds": [
                     {
@@ -162,26 +184,6 @@
                         "max": 0
                       }
                     },
-                    {
-                      "OpCondRange": {
-                        "taxonomies": [
-                          "EMERGENCY_VEHICLE",
-                          "DISTANCE"
-                        ],
-                        "min": 10,
-                        "max": 10000000
-                      }
-                    }
-                  ]
-                }
-              }
-            }
-          },
-          {
-            "OpCondImply": {
-              "opcond_if": {
-                "OpCondAnd": {
-                  "opconds": [
                     {
                       "OpCondSet": {
                         "taxonomies": [
@@ -197,39 +199,13 @@
                 }
               },
               "opcond_then": {
-                "OpCondAnd": {
-                  "opconds": [
-                    {
-                      "OpCondRange": {
-                        "taxonomies": [
-                          "EGO_VEHICLE",
-                          "SPEED"
-                        ],
-                        "min": 0,
-                        "max": 70
-                      }
-                    },
-                    {
-                      "OpCondRange": {
-                        "taxonomies": [
-                          "EMERGENCY_VEHICLE",
-                          "SPEED"
-                        ],
-                        "min": 0,
-                        "max": 0
-                      }
-                    },
-                    {
-                      "OpCondRange": {
-                        "taxonomies": [
-                          "EMERGENCY_VEHICLE",
-                          "DISTANCE"
-                        ],
-                        "min": 3,
-                        "max": 10000000
-                      }
-                    }
-                  ]
+                "OpCondRange": {
+                  "taxonomies": [
+                    "EMERGENCY_VEHICLE",
+                    "DISTANCE"
+                  ],
+                  "min": 5,
+                  "max": 10000000
                 }
               }
             }
