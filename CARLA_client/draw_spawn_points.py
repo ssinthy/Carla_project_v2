@@ -22,6 +22,15 @@ world = client.load_world('Town05')
 carla_map = world.get_map()
 # Get the map's spawn points
 spawn_points = world.get_map().get_spawn_points()
+bp_lib = world.get_blueprint_library()
+
+vehicle_bp = bp_lib.find('vehicle.audi.etron')
+ego_vehicle = world.try_spawn_actor(vehicle_bp, spawn_points[108])
+
+# Spawn an emergency vehicle
+emergency_bp = world.get_blueprint_library().find('vehicle.carlamotors.firetruck')
+emergency_vehicle = world.spawn_actor(emergency_bp, spawn_points[56])
+
 
 first_spawn_point = spawn_points[0]
 

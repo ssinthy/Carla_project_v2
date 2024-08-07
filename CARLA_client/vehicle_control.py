@@ -23,27 +23,37 @@ def initialize_carla():
     time_of_day, rain_status, fog_condition, fog_visibility, wind_force, cloud_condition = set_up_environment(world, weather)
     return client, world, time_of_day, rain_status, fog_condition, fog_visibility, wind_force, cloud_condition
 
-def spawn_vehicle(world):
+def spawn_vehicle(world, client):
     bp_lib = world.get_blueprint_library()
     spawn_points = world.get_map().get_spawn_points()
     vehicle_bp = bp_lib.find('vehicle.audi.etron')
-    ego_vehicle = world.try_spawn_actor(vehicle_bp, spawn_points[0])
-    
-    # ego_vehicle.set_autopilot(False)
+    ego_vehicle = world.try_spawn_actor(vehicle_bp, spawn_points[108])
 
     # Set spectator manual navigation
     spectator = world.get_spectator()
     location = ego_vehicle.get_location()
-    spectator_pos = carla.Transform(location + carla.Location(x=20,y=10,z=4),
-                            carla.Rotation(yaw=-155))
     transform = carla.Transform(ego_vehicle.get_transform().transform(carla.Location(x=-4, z=2)), ego_vehicle.get_transform().rotation)
-    # spectator.set_transform(spectator_pos)
-    # Get the emergency vehicle
+    spectator.set_transform(transform)
+
+    # Spawn an emergency vehicle
     emergency_bp = world.get_blueprint_library().find('vehicle.carlamotors.firetruck')
-    # Spawn the emergency vehicle 29 = on another road near to junction
-    emergency_vehicle = world.spawn_actor(emergency_bp, spawn_points[30])
+    emergency_vehicle = world.spawn_actor(emergency_bp, spawn_points[56])
     # ego_vehicle.set_autopilot(True)
-    emergency_vehicle.set_autopilot(True)
+    # Set up the traffic manager
+    traffic_manager = client.get_trafficmanager()
+    traffic_manager_port = traffic_manager.get_port()
+
+    # Set the vehicle to drive 30% faster than the current speed limit
+    traffic_manager.vehicle_percentage_speed_difference(emergency_vehicle, -30)  # No speed variation
+    
+    # Make the vehicle ignore traffic lights
+    traffic_manager.ignore_lights_percentage(emergency_vehicle, 100)
+    
+    # Turn on the vehicle's (emergency lights)
+    from carla import VehicleLightState as vls
+    emergency_vehicle.set_light_state(carla.VehicleLightState(vls.Special1))
+        
+    emergency_vehicle.set_autopilot(True, traffic_manager_port)
     return ego_vehicle, emergency_vehicle
 
 def set_spectator(world, vehicle):
