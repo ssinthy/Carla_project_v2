@@ -33,7 +33,7 @@ def spawn_vehicle(world, client):
     spectator = world.get_spectator()
     location = ego_vehicle.get_location()
     transform = carla.Transform(ego_vehicle.get_transform().transform(carla.Location(x=-4, z=2)), ego_vehicle.get_transform().rotation)
-    spectator.set_transform(transform)
+    # spectator.set_transform(transform)
 
     # Spawn an emergency vehicle
     emergency_bp = world.get_blueprint_library().find('vehicle.carlamotors.firetruck')
