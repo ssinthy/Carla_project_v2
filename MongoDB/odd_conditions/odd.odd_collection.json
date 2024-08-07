@@ -28,7 +28,7 @@
                           "EMERGENCY_VEHICLE",
                           "SPEED"
                         ],
-                        "min": 1,
+                        "min": 0,
                         "max": 120
                       }
                     },
@@ -51,7 +51,7 @@
                     "EMERGENCY_VEHICLE",
                     "DISTANCE"
                   ],
-                  "min": 50,
+                  "min": 70,
                   "max": 10000000
                 }
               }
@@ -78,7 +78,7 @@
                           "EMERGENCY_VEHICLE",
                           "SPEED"
                         ],
-                        "min": 1,
+                        "min": 0,
                         "max": 120
                       }
                     },
@@ -89,7 +89,9 @@
                           "RELATIVE_POSITION"
                         ],
                         "boundset": [
-                          "opposite_lane"
+                          "opposite_lane",
+                          "on_other_road",
+                          "on_junction"
                         ]
                       }
                     }
@@ -102,109 +104,7 @@
                     "EMERGENCY_VEHICLE",
                     "DISTANCE"
                   ],
-                  "min": 5,
-                  "max": 10000000
-                }
-              }
-            }
-          },
-          {
-            "OpCondImply": {
-              "opcond_if": {
-                "OpCondAnd": {
-                  "opconds": [
-                    {
-                      "OpCondRange": {
-                        "taxonomies": [
-                          "EGO_VEHICLE",
-                          "SPEED"
-                        ],
-                        "min": 0,
-                        "max": 70
-                      }
-                    },
-                    {
-                      "OpCondRange": {
-                        "taxonomies": [
-                          "EMERGENCY_VEHICLE",
-                          "SPEED"
-                        ],
-                        "min": 0,
-                        "max": 0
-                      }
-                    },
-                    {
-                      "OpCondSet": {
-                        "taxonomies": [
-                          "EMERGENCY_VEHICLE",
-                          "RELATIVE_POSITION"
-                        ],
-                        "boundset": [
-                          "subject_lane"
-                        ]
-                      }
-                    }
-                  ]
-                }
-              },
-              "opcond_then": {
-                "OpCondRange": {
-                  "taxonomies": [
-                    "EMERGENCY_VEHICLE",
-                    "DISTANCE"
-                  ],
-                  "min": 50,
-                  "max": 10000000
-                }
-              }
-            }
-          },
-          {
-            "OpCondImply": {
-              "opcond_if": {
-                "OpCondAnd": {
-                  "opconds": [
-                    {
-                      "OpCondRange": {
-                        "taxonomies": [
-                          "EGO_VEHICLE",
-                          "SPEED"
-                        ],
-                        "min": 0,
-                        "max": 70
-                      }
-                    },
-                    {
-                      "OpCondRange": {
-                        "taxonomies": [
-                          "EMERGENCY_VEHICLE",
-                          "SPEED"
-                        ],
-                        "min": 0,
-                        "max": 0
-                      }
-                    },
-                    {
-                      "OpCondSet": {
-                        "taxonomies": [
-                          "EMERGENCY_VEHICLE",
-                          "RELATIVE_POSITION"
-                        ],
-                        "boundset": [
-                          "opposite_lane"
-                        ]
-                      }
-                    }
-                  ]
-                }
-              },
-              "opcond_then": {
-                "OpCondRange": {
-                  "taxonomies": [
-                    "EMERGENCY_VEHICLE",
-                    "DISTANCE"
-                  ],
-                  "min": 5,
+                  "min": 40,
                   "max": 10000000
                 }
               }
