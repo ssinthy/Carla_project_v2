@@ -8,26 +8,35 @@ from carla_envornmental_condition import set_up_environment
 def initialize_carla():
     client = carla.Client('localhost', 2000)
     client.set_timeout(10.0)
-    world = client.load_world('Town05')
+    # path windows D:\\CARLA_0.9.15\\WindowsNoEditor\\PythonAPI\\util\\opendrive\\DE_Hamburg_S01_01_REM_101_0_1_V00_5_Yellow_Section_open_drive_1_4.xodr
+    # Read the OpenDRIVE file into a string
+    with open('/home/sumaiya/carla/PythonAPI/util/opendrive/DE_Hamburg_S01_01_REM_101_0_1_V00_5_Yellow_Section_open_drive_1_4.xodr', 'r') as file:
+        opendrive_string = file.read()
 
-    weather = carla.WeatherParameters(
-        cloudiness=0.0,
-        precipitation=0.0,
-        sun_altitude_angle=10.0,
-        sun_azimuth_angle=70.0,
-        precipitation_deposits=0.0,
-        wind_intensity=0.0,
-        fog_density=0.0,
-        wetness=0.0,
+    # Set map parameters if needed
+    parameters = carla.OpendriveGenerationParameters(
+        vertex_distance=2.0,
+        max_road_length=50.0,
+        wall_height=1.0,
+        additional_width=0.6,
+        smooth_junctions=True,
+        enable_mesh_visibility=True
     )
-    time_of_day, rain_status, fog_condition, fog_visibility, wind_force, cloud_condition = set_up_environment(world, weather)
-    return client, world, time_of_day, rain_status, fog_condition, fog_visibility, wind_force, cloud_condition
+
+    # Generate the CARLA world from the OpenDRIVE file
+    world = client.generate_opendrive_world(opendrive_string, parameters)
+    # world = client.load_world('Town05')
+
+    weather = carla.WeatherParameters()
+    # time_of_day, rain_status, fog_condition, fog_visibility, wind_force, cloud_condition = set_up_environment(world, weather)
+    return client, world
 
 def spawn_vehicle(world, client):
     bp_lib = world.get_blueprint_library()
     spawn_points = world.get_map().get_spawn_points()
     vehicle_bp = bp_lib.find('vehicle.audi.etron')
-    ego_vehicle = world.try_spawn_actor(vehicle_bp, spawn_points[108])
+    # Spawn an emergency vehicle town 5 spawn point 108 / HH map 154
+    ego_vehicle = world.try_spawn_actor(vehicle_bp, spawn_points[154])
 
     # Set spectator manual navigation
     spectator = world.get_spectator()
@@ -35,9 +44,9 @@ def spawn_vehicle(world, client):
     transform = carla.Transform(ego_vehicle.get_transform().transform(carla.Location(x=-4, z=2)), ego_vehicle.get_transform().rotation)
     # spectator.set_transform(transform)
 
-    # Spawn an emergency vehicle
+    # Spawn an emergency vehicle town 5 spawn point 56 // HH map 89
     emergency_bp = world.get_blueprint_library().find('vehicle.carlamotors.firetruck')
-    emergency_vehicle = world.spawn_actor(emergency_bp, spawn_points[56])
+    emergency_vehicle = world.spawn_actor(emergency_bp, spawn_points[89])
     # ego_vehicle.set_autopilot(True)
     # Set up the traffic manager
     traffic_manager = client.get_trafficmanager()

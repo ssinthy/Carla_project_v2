@@ -4,7 +4,7 @@ import threading
 
 def main():
     # Main execution
-    client, world, time_of_day, rain_status, fog_condition, fog_visibility, wind_force, cloud_condition = initialize_carla()
+    client, world = initialize_carla()
     ego_vehicle, emergency_vehicle = spawn_vehicle(world, client)
     camera, sensor_data = setup_camera(world, ego_vehicle)
 
