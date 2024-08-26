@@ -19,3 +19,6 @@ export PYTHONPATH=/usr/local/bin/python:/home/sumaiya/carla/PythonAPI/carla
 1. Start DB
 2. Start API server
 3. Run client
+
+pyuic5 -x scenario_info_manager.ui -o scenario_info_manager.py
+
