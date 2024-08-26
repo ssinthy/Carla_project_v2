@@ -10,8 +10,8 @@ def initialize_carla():
     client.set_timeout(10.0)
     # path windows D:\\CARLA_0.9.15\\WindowsNoEditor\\PythonAPI\\util\\opendrive\\DE_Hamburg_S01_01_REM_101_0_1_V00_5_Yellow_Section_open_drive_1_4.xodr
     # Read the OpenDRIVE file into a string
-    with open('/home/sumaiya/carla/PythonAPI/util/opendrive/DE_Hamburg_S01_01_REM_101_0_1_V00_5_Yellow_Section_open_drive_1_4.xodr', 'r') as file:
-        opendrive_string = file.read()
+    # with open('/home/sumaiya/carla/PythonAPI/util/opendrive/DE_Hamburg_S01_01_REM_101_0_1_V00_5_Yellow_Section_open_drive_1_4.xodr', 'r') as file:
+    #    opendrive_string = file.read()
 
     # Set map parameters if needed
     parameters = carla.OpendriveGenerationParameters(
@@ -24,8 +24,8 @@ def initialize_carla():
     )
 
     # Generate the CARLA world from the OpenDRIVE file
-    world = client.generate_opendrive_world(opendrive_string, parameters)
-    # world = client.load_world('Town05')
+    # world = client.generate_opendrive_world(opendrive_string, parameters)
+    world = client.load_world('Town05')
 
     weather = carla.WeatherParameters()
     # time_of_day, rain_status, fog_condition, fog_visibility, wind_force, cloud_condition = set_up_environment(world, weather)
@@ -36,7 +36,7 @@ def spawn_vehicle(world, client):
     spawn_points = world.get_map().get_spawn_points()
     vehicle_bp = bp_lib.find('vehicle.audi.etron')
     # Spawn an emergency vehicle town 5 spawn point 108 / HH map 154
-    ego_vehicle = world.try_spawn_actor(vehicle_bp, spawn_points[154])
+    ego_vehicle = world.try_spawn_actor(vehicle_bp, spawn_points[108])
 
     # Set spectator manual navigation
     spectator = world.get_spectator()
@@ -46,7 +46,7 @@ def spawn_vehicle(world, client):
 
     # Spawn an emergency vehicle town 5 spawn point 56 // HH map 89
     emergency_bp = world.get_blueprint_library().find('vehicle.carlamotors.firetruck')
-    emergency_vehicle = world.spawn_actor(emergency_bp, spawn_points[89])
+    emergency_vehicle = world.spawn_actor(emergency_bp, spawn_points[56])
     # ego_vehicle.set_autopilot(True)
     # Set up the traffic manager
     traffic_manager = client.get_trafficmanager()
