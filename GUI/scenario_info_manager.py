@@ -47,7 +47,6 @@ class Ui_MainWindow(object):
         self.comboBox_road_type.setObjectName("comboBox_road_type")
         self.comboBox_road_type.addItem("")
         self.comboBox_road_type.addItem("")
-        self.comboBox_road_type.addItem("")
         self.label_weather = QtWidgets.QLabel(self.centralwidget)
         self.label_weather.setGeometry(QtCore.QRect(20, 200, 151, 16))
 
@@ -131,8 +130,7 @@ class Ui_MainWindow(object):
         self.comboBox_ego_position.setItemText(4, _translate("MainWindow", "Intersection"))
         self.road_type_label.setText(_translate("MainWindow", "Road Type"))
         self.comboBox_road_type.setItemText(0, _translate("MainWindow", "Motorway"))
-        self.comboBox_road_type.setItemText(1, _translate("MainWindow", "Expressway"))
-        self.comboBox_road_type.setItemText(2, _translate("MainWindow", "local Road"))
+        self.comboBox_road_type.setItemText(1, _translate("MainWindow", "local Road"))
         self.label_weather.setText(_translate("MainWindow", "Weather Condition"))
         self.comboBox_weather.setItemText(0, _translate("MainWindow", "Clear"))
         self.comboBox_weather.setItemText(1, _translate("MainWindow", "Cloudy"))
