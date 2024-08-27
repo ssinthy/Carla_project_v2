@@ -1,17 +1,15 @@
-# -*- coding: utf-8 -*-
-
-# Form implementation generated from reading ui file 'scenario_info_manager.ui'
-#
-# Created by: PyQt5 UI code generator 5.14.1
-#
-# WARNING! All changes made in this file will be lost!
+from pymongo import MongoClient
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-
+from PyQt5.QtWidgets import QMessageBox
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
+        self.client = MongoClient("mongodb://localhost:27017/")
+        self.db = self.client['scenario']
+        self.collection = self.db['scenario_info']
+
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(558, 438)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
@@ -153,8 +151,19 @@ class Ui_MainWindow(object):
         self.set_up_scenario.setText(_translate("MainWindow", "Set Up Scenario"))
 
     def pressed(self):
-        road_type = self.comboBox_ego_position.currentText()
-        print(road_type)
+        road_type = self.comboBox_road_type.currentText()
+        ego_position = self.comboBox_ego_position.currentText()
+        emv_position = self.comboBox_emv_position.currentText()
+        weather_condition = self.comboBox_weather.currentText()
+        time_of_day = self.comboBox_time_of_day.currentText()
+        print(road_type, ego_position, emv_position)
+
+        try:
+            # Insert the selected value into MongoDB
+            self.collection.insert_one({"road_type": road_type})
+        except Exception as e:
+            QMessageBox.critical(self, 'Error', f'Failed to save to MongoDB: {e}')
+
 
 
 
