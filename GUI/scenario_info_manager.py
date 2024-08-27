@@ -18,16 +18,17 @@ class Ui_MainWindow(object):
     def button_clicked(self):
         try:
             # Command to start the CARLA simulator (adjust path as needed)
-            # subprocess.Popen(['./CarlaUE4.sh'], cwd='/path/to/Carla/Simulator/Root')  # On Linux or MacOS
+            # subprocess.Popen(['./CarlaUE4.sh'], cwd='/home/sumaiya/carla')  # On Linux or MacOS
             # subprocess.Popen(['CarlaUE4.exe'], cwd='D:\\CARLA_0.9.15\\WindowsNoEditor')  # On Windows
             
-            result = subprocess.run(['python', 'D:\\CARLA_0.9.15\\client\\Carla_project-v2\\CARLA_client\\main.py'], capture_output=True, text=True)
+            # result = subprocess.run(['python', 'D:\\CARLA_0.9.15\\client\\Carla_project-v2\\CARLA_client\\main.py'], capture_output=True, text=True)
+            result = subprocess.run(['python', '/home/sumaiya/carla/Carla_project_v2/CARLA_client/main.py'], capture_output=True, text=True)
 
             if result.stdout:
                 print("Output of carla_api_script.py:", result.stdout)
             if result.stderr:
                 print("Error in carla_api_script.py:", result.stderr)
-
+            
             QMessageBox.information(self, 'Success', 'CARLA API Script executed.')
         except Exception as e:
             QMessageBox.critical(self, 'Error', f'Failed to run CARLA API script: {e}')
