@@ -3,7 +3,16 @@ import random
 import numpy as np
 import pygame
 import time
+import requests
 from carla_envornmental_condition import set_up_environment
+
+def get_odd_from_api(id):
+    response = requests.get(f"http://127.0.0.1:5000/api/scenario/{id}")
+    if response.status_code == 200:
+        return response.json()
+    else:
+        print(f"Failed to get odd data. Status code: {response.status_code}")
+        return None
 
 def initialize_carla():
     client = carla.Client('localhost', 2000)
