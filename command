@@ -22,3 +22,10 @@ export PYTHONPATH=/usr/local/bin/python:/home/sumaiya/carla/PythonAPI/carla
 
 pyuic5 -x scenario_info_manager.ui -o scenario_info_manager.py
 sudo service mongod start
+
+----------------------------------------------------------------------------------------
+
+{"road_type": motorway,
+"ego_position": subject_lane,
+"emv_position": subject_lane
+}

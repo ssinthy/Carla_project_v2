@@ -1,5 +1,5 @@
 from pymongo import MongoClient
-
+from bson.objectid import ObjectId
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QMessageBox
@@ -157,10 +157,19 @@ class Ui_MainWindow(object):
         weather_condition = self.comboBox_weather.currentText()
         time_of_day = self.comboBox_time_of_day.currentText()
         print(road_type, ego_position, emv_position)
+        
 
         try:
+            filter = {'_id': ObjectId("66cdd2f14f8c5939fc9b1150")}
             # Insert the selected value into MongoDB
-            self.collection.insert_one({"road_type": road_type})
+            new_data = {"$set": {
+                    "road_type": road_type,
+                    "ego_position": ego_position,
+                    "emv_position": emv_position
+                }
+            }
+            
+            self.collection.update_one(filter, new_data, upsert=True)
         except Exception as e:
             QMessageBox.critical(self, 'Error', f'Failed to save to MongoDB: {e}')
 
