@@ -21,4 +21,4 @@ export PYTHONPATH=/usr/local/bin/python:/home/sumaiya/carla/PythonAPI/carla
 3. Run client
 
 pyuic5 -x scenario_info_manager.ui -o scenario_info_manager.py
-
+sudo service mongod start
