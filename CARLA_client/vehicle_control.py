@@ -6,7 +6,7 @@ import time
 import requests
 from carla_envornmental_condition import set_up_environment
 
-def get_odd_from_api(id):
+def get_scenario_info_from_api(id):
     response = requests.get(f"http://127.0.0.1:5000/api/scenario/{id}")
     if response.status_code == 200:
         return response.json()
@@ -34,6 +34,10 @@ def initialize_carla():
 
     # Generate the CARLA world from the OpenDRIVE file
     # world = client.generate_opendrive_world(opendrive_string, parameters)
+
+    scenario_info_json = get_scenario_info_from_api("66cdd2f14f8c5939fc9b1150")
+    print(scenario_info_json)
+    road_type = scenario_info_json.road_type
     world = client.load_world('Town05')
 
     weather = carla.WeatherParameters()

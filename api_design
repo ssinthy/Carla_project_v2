@@ -1,0 +1,33 @@
+{"road_type": {
+    "motorway": 
+        {"Town05": {
+            "ego_position": {
+                "intersection": 108,
+                "subject_lane": 0,
+                "opposite_lane": 1,
+                "left_lane": 2,
+                "right_lane": 3
+            },
+            "emv_position": {
+                "intersection": 56,
+                "subject_lane": 4,
+                "opposite_lane": 5,
+                "left_lane": 6,
+                "right_lane": 7
+            }
+        }
+    },
+    "local_road": 
+        {"Town01": {
+            "ego_position": {
+                "subject_lane": 0,
+                "opposite_lane": 1
+            },
+            "emv_position": {
+                "subject_lane": 4,
+                "opposite_lane": 5
+            }
+        }
+    }
+ }
+}
