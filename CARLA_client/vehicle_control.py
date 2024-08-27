@@ -47,7 +47,7 @@ def spawn_vehicle(world, client):
     # Spawn an emergency vehicle town 5 spawn point 56 // HH map 89
     emergency_bp = world.get_blueprint_library().find('vehicle.carlamotors.firetruck')
     emergency_vehicle = world.spawn_actor(emergency_bp, spawn_points[56])
-    # ego_vehicle.set_autopilot(True)
+    ego_vehicle.set_autopilot(True)
     # Set up the traffic manager
     traffic_manager = client.get_trafficmanager()
     traffic_manager_port = traffic_manager.get_port()
@@ -68,7 +68,7 @@ def spawn_vehicle(world, client):
 def set_spectator(world, vehicle):
     while vehicle is not None:
         spectator = world.get_spectator()
-        transform = carla.Transform(vehicle.get_transform().transform(carla.Location(x=-20, y= 0, z=8)), vehicle.get_transform().rotation)
+        transform = carla.Transform(vehicle.get_transform().transform(carla.Location(x=-20, y= 0, z=5)), vehicle.get_transform().rotation)
         spectator.set_transform(transform)
         
 def setup_camera(world, vehicle):
