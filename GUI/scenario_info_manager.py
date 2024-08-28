@@ -107,7 +107,7 @@ class Ui_MainWindow(object):
         self.set_up_scenario.setObjectName("set_up_scenario")
 
         self.spinBox_safety_distance = QtWidgets.QSpinBox(self.centralwidget)
-        self.spinBox_safety_distance.setGeometry(QtCore.QRect(260, 280, 48, 26))
+        self.spinBox_safety_distance.setGeometry(QtCore.QRect(260, 290, 48, 26))
         self.spinBox_safety_distance.setObjectName("spinBox_safety_distance")
         self.Label_Safety_Distance = QtWidgets.QLabel(self.centralwidget)
         self.Label_Safety_Distance.setGeometry(QtCore.QRect(20, 290, 141, 16))
