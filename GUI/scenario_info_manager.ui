@@ -124,7 +124,7 @@
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>200</y>
+      <y>190</y>
       <width>151</width>
       <height>16</height>
      </rect>
@@ -182,7 +182,7 @@
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>250</y>
+      <y>240</y>
       <width>121</width>
       <height>16</height>
      </rect>
@@ -200,7 +200,7 @@
     <property name="geometry">
      <rect>
       <x>260</x>
-      <y>250</y>
+      <y>240</y>
       <width>181</width>
       <height>23</height>
      </rect>
@@ -282,8 +282,8 @@
    <widget class="QPushButton" name="set_up_scenario">
     <property name="geometry">
      <rect>
-      <x>170</x>
-      <y>340</y>
+      <x>220</x>
+      <y>350</y>
       <width>131</width>
       <height>23</height>
      </rect>
@@ -295,6 +295,34 @@
     </property>
     <property name="text">
      <string>Set Up Scenario</string>
+    </property>
+   </widget>
+   <widget class="QSpinBox" name="spinBox_safety_distance">
+    <property name="geometry">
+     <rect>
+      <x>260</x>
+      <y>280</y>
+      <width>48</width>
+      <height>26</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="Label_Safety_Distance">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>290</y>
+      <width>141</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Safety Distance (m)</string>
     </property>
    </widget>
   </widget>

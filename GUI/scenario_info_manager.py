@@ -105,6 +105,17 @@ class Ui_MainWindow(object):
         font.setPointSize(10)
         self.set_up_scenario.setFont(font)
         self.set_up_scenario.setObjectName("set_up_scenario")
+
+        self.spinBox_safety_distance = QtWidgets.QSpinBox(self.centralwidget)
+        self.spinBox_safety_distance.setGeometry(QtCore.QRect(260, 280, 48, 26))
+        self.spinBox_safety_distance.setObjectName("spinBox_safety_distance")
+        self.Label_Safety_Distance = QtWidgets.QLabel(self.centralwidget)
+        self.Label_Safety_Distance.setGeometry(QtCore.QRect(20, 290, 141, 16))
+        font = QtGui.QFont()
+        font.setPointSize(10)
+        self.Label_Safety_Distance.setFont(font)
+        self.Label_Safety_Distance.setObjectName("Label_Safety_Distance")
+
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 558, 22))
@@ -130,7 +141,7 @@ class Ui_MainWindow(object):
         self.comboBox_ego_position.setItemText(4, _translate("MainWindow", "Intersection"))
         self.road_type_label.setText(_translate("MainWindow", "Road Type"))
         self.comboBox_road_type.setItemText(0, _translate("MainWindow", "Motorway"))
-        self.comboBox_road_type.setItemText(1, _translate("MainWindow", "local Road"))
+        self.comboBox_road_type.setItemText(1, _translate("MainWindow", "Expressway"))
         self.label_weather.setText(_translate("MainWindow", "Weather Condition"))
         self.comboBox_weather.setItemText(0, _translate("MainWindow", "Clear"))
         self.comboBox_weather.setItemText(1, _translate("MainWindow", "Cloudy"))
@@ -147,6 +158,7 @@ class Ui_MainWindow(object):
         self.comboBox_emv_position.setItemText(3, _translate("MainWindow", "Opposite Lane"))
         self.comboBox_emv_position.setItemText(4, _translate("MainWindow", "Intersection"))
         self.set_up_scenario.setText(_translate("MainWindow", "Set Up Scenario"))
+        self.Label_Safety_Distance.setText(_translate("MainWindow", "Safety Distance (m)"))
 
     def pressed(self):
         road_type = self.comboBox_road_type.currentText()
