@@ -14,42 +14,21 @@ def get_scenario_info_from_api(id):
         print(f"Failed to get odd data. Status code: {response.status_code}")
         return None
 
-def initialize_carla():
+def initialize_carla(town):
     client = carla.Client('localhost', 2000)
     client.set_timeout(10.0)
-    # path windows D:\\CARLA_0.9.15\\WindowsNoEditor\\PythonAPI\\util\\opendrive\\DE_Hamburg_S01_01_REM_101_0_1_V00_5_Yellow_Section_open_drive_1_4.xodr
-    # Read the OpenDRIVE file into a string
-    # with open('/home/sumaiya/carla/PythonAPI/util/opendrive/DE_Hamburg_S01_01_REM_101_0_1_V00_5_Yellow_Section_open_drive_1_4.xodr', 'r') as file:
-    #    opendrive_string = file.read()
-
-    # Set map parameters if needed
-    parameters = carla.OpendriveGenerationParameters(
-        vertex_distance=2.0,
-        max_road_length=50.0,
-        wall_height=1.0,
-        additional_width=0.6,
-        smooth_junctions=True,
-        enable_mesh_visibility=True
-    )
-
-    # Generate the CARLA world from the OpenDRIVE file
-    # world = client.generate_opendrive_world(opendrive_string, parameters)
-
-    scenario_info_json = get_scenario_info_from_api("66cdd2f14f8c5939fc9b1150")
-    print(scenario_info_json)
-    road_type = scenario_info_json.road_type
-    world = client.load_world('Town05')
+    world = client.load_world(town)
 
     weather = carla.WeatherParameters()
     # time_of_day, rain_status, fog_condition, fog_visibility, wind_force, cloud_condition = set_up_environment(world, weather)
     return client, world
 
-def spawn_vehicle(world, client):
+def spawn_vehicle(world, client, ego_vehicle_spwan_point, emv_spawn_point):
     bp_lib = world.get_blueprint_library()
     spawn_points = world.get_map().get_spawn_points()
     vehicle_bp = bp_lib.find('vehicle.audi.etron')
     # Spawn an emergency vehicle town 5 spawn point 108 / HH map 154
-    ego_vehicle = world.try_spawn_actor(vehicle_bp, spawn_points[108])
+    ego_vehicle = world.try_spawn_actor(vehicle_bp, spawn_points[ego_vehicle_spwan_point])
 
     # Set spectator manual navigation
     spectator = world.get_spectator()
@@ -59,7 +38,7 @@ def spawn_vehicle(world, client):
 
     # Spawn an emergency vehicle town 5 spawn point 56 // HH map 89
     emergency_bp = world.get_blueprint_library().find('vehicle.carlamotors.firetruck')
-    emergency_vehicle = world.spawn_actor(emergency_bp, spawn_points[56])
+    emergency_vehicle = world.spawn_actor(emergency_bp, spawn_points[emv_spawn_point])
     ego_vehicle.set_autopilot(True)
     # Set up the traffic manager
     traffic_manager = client.get_trafficmanager()

@@ -187,7 +187,7 @@ class Ui_MainWindow(object):
         time_of_day = self.comboBox_time_of_day.currentText()
         print(road_type, ego_position, emv_position, emv_travel_direction)
         
-        new_data = {
+        scenario_info = {
                 "road_type": road_type,
                 "ego_position": ego_position,
                 "emv_position": emv_position,
