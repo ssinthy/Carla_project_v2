@@ -1,0 +1,396 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>560</width>
+    <height>445</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>ScenarioInfoManager</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QLabel" name="labe_ego_position">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>80</y>
+      <width>121</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Ego Vehicle Position</string>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="comboBox_ego_position">
+    <property name="geometry">
+     <rect>
+      <x>260</x>
+      <y>80</y>
+      <width>181</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <item>
+     <property name="text">
+      <string>Traffic Lane</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Approaching Intersection</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Approaching T-Junction</string>
+     </property>
+    </item>
+   </widget>
+   <widget class="QLabel" name="road_type_label">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>30</y>
+      <width>71</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Road Type</string>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="comboBox_road_type">
+    <property name="geometry">
+     <rect>
+      <x>260</x>
+      <y>30</y>
+      <width>181</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <item>
+     <property name="text">
+      <string>Motorway</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Expressway</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>local Road</string>
+     </property>
+    </item>
+   </widget>
+   <widget class="QLabel" name="label_weather">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>230</y>
+      <width>151</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Weather Condition</string>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="comboBox_weather">
+    <property name="geometry">
+     <rect>
+      <x>260</x>
+      <y>220</y>
+      <width>181</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <item>
+     <property name="text">
+      <string>Clear</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Cloudy</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Light Rain</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Moderate Rain</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Heavy Rain</string>
+     </property>
+    </item>
+   </widget>
+   <widget class="QLabel" name="label_day_time">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>270</y>
+      <width>121</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Time of Day</string>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="comboBox_time_of_day">
+    <property name="geometry">
+     <rect>
+      <x>260</x>
+      <y>270</y>
+      <width>181</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <item>
+     <property name="text">
+      <string>Day time</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Night time</string>
+     </property>
+    </item>
+   </widget>
+   <widget class="QLabel" name="label_emv_position">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>180</y>
+      <width>211</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>EMV Travel Direction</string>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="comboBox_emv_position">
+    <property name="geometry">
+     <rect>
+      <x>260</x>
+      <y>180</y>
+      <width>181</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <item>
+     <property name="text">
+      <string>Approaches from Behind</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>As Lead Vehicle</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Approaches from Right Lane</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Approaches from Left Lane</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Approaches on Opposite Lane</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Approaches Intersection</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Approaches T-Junction</string>
+     </property>
+    </item>
+   </widget>
+   <widget class="QPushButton" name="set_up_scenario">
+    <property name="geometry">
+     <rect>
+      <x>220</x>
+      <y>350</y>
+      <width>131</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Set Up Scenario</string>
+    </property>
+   </widget>
+   <widget class="QSpinBox" name="spinBox_safety_distance">
+    <property name="geometry">
+     <rect>
+      <x>260</x>
+      <y>310</y>
+      <width>48</width>
+      <height>20</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="Label_Safety_Distance">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>310</y>
+      <width>141</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Safety Distance (m)</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_emv_position_2">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>130</y>
+      <width>171</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Emergency Vehicle Position</string>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="comboBox_ego_position_2">
+    <property name="geometry">
+     <rect>
+      <x>260</x>
+      <y>130</y>
+      <width>181</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <item>
+     <property name="text">
+      <string>Same Road</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Parallel Road</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Opposite Road</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Cross Road</string>
+     </property>
+    </item>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>560</width>
+     <height>22</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

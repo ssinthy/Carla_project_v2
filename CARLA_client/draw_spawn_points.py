@@ -19,8 +19,8 @@ client.set_timeout(10.0)
 
 # path windows D:\\CARLA_0.9.15\\WindowsNoEditor\\PythonAPI\\util\\opendrive\\DE_Hamburg_S01_01_REM_101_0_1_V00_5_Yellow_Section_open_drive_1_4.xodr
 # Read the OpenDRIVE file into a string
-with open('/home/sumaiya/carla/PythonAPI/util/opendrive/DE_Hamburg_S01_01_REM_101_0_1_V00_5_Yellow_Section_open_drive_1_4.xodr', 'r') as file:
-    opendrive_string = file.read()
+# with open('/home/sumaiya/carla/PythonAPI/util/opendrive/DE_Hamburg_S01_01_REM_101_0_1_V00_5_Yellow_Section_open_drive_1_4.xodr', 'r') as file:
+#    opendrive_string = file.read()
 
 # Set map parameters if needed
 parameters = carla.OpendriveGenerationParameters(
@@ -33,10 +33,10 @@ parameters = carla.OpendriveGenerationParameters(
 )
 
 # Generate the CARLA world from the OpenDRIVE file
-world = client.generate_opendrive_world(opendrive_string, parameters)
+# world = client.generate_opendrive_world(opendrive_string, parameters)
 
 # Get the world and map
-# world = client.load_world('Town05')
+world = client.load_world('Town01')
 carla_map = world.get_map()
 # Get the map's spawn points
 spawn_points = world.get_map().get_spawn_points()
@@ -65,7 +65,7 @@ spectator_pos = carla.Transform(first_spawn_point.location + carla.Location(x=20
                             carla.Rotation(yaw = first_spawn_point.rotation.yaw -155))
 spectator.set_transform(transform)
 
-'''
+
 # draw spawn points
 for i in range(0, len(spawn_points)):
     str = f"point {i}"
@@ -75,6 +75,7 @@ for i in range(0, len(spawn_points)):
 # draw_hud_box(world, first_spawn_point.location)
 # Add some delay to visualize the changes
 #time.sleep(50)
+
 '''
 # Get waypoint
 waypoints = carla_map.get_topology()
@@ -83,3 +84,5 @@ waypoints = carla_map.get_topology()
 for waypoint in waypoints:
     str = f"id {waypoint[0].road_id} {waypoint[0].lane_id}"
     draw_string(world, waypoint[0].transform.location, str)
+    
+'''
