@@ -325,7 +325,7 @@
      <string>Safety Distance (m)</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_emv_position_2">
+   <widget class="QLabel" name="label_emv_position">
     <property name="geometry">
      <rect>
       <x>20</x>
@@ -343,7 +343,7 @@
      <string>Emergency Vehicle Position</string>
     </property>
    </widget>
-   <widget class="QComboBox" name="comboBox_ego_position_2">
+   <widget class="QComboBox" name="comboBox_emv_position">
     <property name="geometry">
      <rect>
       <x>260</x>
