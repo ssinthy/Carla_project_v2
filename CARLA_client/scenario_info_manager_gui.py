@@ -193,12 +193,3 @@ class Ui_MainWindow(object):
                 "emv_position": emv_position,
                 "emv_travel_direction": emv_travel_direction
             }
-
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    MainWindow = QtWidgets.QMainWindow()
-    ui = Ui_MainWindow()
-    ui.setupUi(MainWindow)
-    MainWindow.show()
-    sys.exit(app.exec_())

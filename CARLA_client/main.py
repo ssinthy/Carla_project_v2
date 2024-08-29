@@ -20,8 +20,8 @@ ego_vehicle, emergency_vehicle = spawn_vehicle(world, client, ego_vehicle_spwan_
 camera, sensor_data = setup_camera(world, ego_vehicle)
 threading.Thread(target=monitor_odd, args=[ego_vehicle, emergency_vehicle, world]).start()
 threading.Thread(target=set_spectator, args=[world, ego_vehicle]).start()
+threading.Thread(target=manual_control, args=[world, ego_vehicle, sensor_data]).start()
 
-manual_control(world, ego_vehicle, sensor_data)
 app = QtWidgets.QApplication(sys.argv)
 MainWindow = QtWidgets.QMainWindow()
 ui = Ui_MainWindow()
