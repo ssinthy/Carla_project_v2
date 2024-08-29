@@ -139,6 +139,8 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
+        
+        self.set_up_scenario.clicked.connect(self.pressed)
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
@@ -175,6 +177,22 @@ class Ui_MainWindow(object):
         self.comboBox_emv_position.setItemText(1, _translate("MainWindow", "Parallel Road"))
         self.comboBox_emv_position.setItemText(2, _translate("MainWindow", "Opposite Road"))
         self.comboBox_emv_position.setItemText(3, _translate("MainWindow", "Cross Road"))
+        
+    def pressed(self):
+        road_type = self.comboBox_road_type.currentText()
+        ego_position = self.comboBox_ego_position.currentText()
+        emv_position = self.comboBox_emv_position.currentText()
+        emv_travel_direction = self.comboBox_emv_travel_direction.currentText()
+        weather_condition = self.comboBox_weather.currentText()
+        time_of_day = self.comboBox_time_of_day.currentText()
+        print(road_type, ego_position, emv_position, emv_travel_direction)
+        
+        new_data = {
+                "road_type": road_type,
+                "ego_position": ego_position,
+                "emv_position": emv_position,
+                "emv_travel_direction": emv_travel_direction
+            }
 
 
 if __name__ == "__main__":
