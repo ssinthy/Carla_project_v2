@@ -19,7 +19,7 @@
      <rect>
       <x>20</x>
       <y>80</y>
-      <width>121</width>
+      <width>171</width>
       <height>21</height>
      </rect>
     </property>
@@ -211,7 +211,7 @@
      </property>
     </item>
    </widget>
-   <widget class="QLabel" name="label_emv_position">
+   <widget class="QLabel" name="label_emv_travel_direction">
     <property name="geometry">
      <rect>
       <x>20</x>
@@ -229,7 +229,7 @@
      <string>EMV Travel Direction</string>
     </property>
    </widget>
-   <widget class="QComboBox" name="comboBox_emv_position">
+   <widget class="QComboBox" name="comboBox_emv_travel_direction">
     <property name="geometry">
      <rect>
       <x>260</x>
@@ -330,7 +330,7 @@
      <rect>
       <x>20</x>
       <y>130</y>
-      <width>171</width>
+      <width>211</width>
       <height>20</height>
      </rect>
     </property>
@@ -385,7 +385,7 @@
      <x>0</x>
      <y>0</y>
      <width>560</width>
-     <height>22</height>
+     <height>26</height>
     </rect>
    </property>
   </widget>
