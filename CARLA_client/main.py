@@ -6,12 +6,6 @@ import threading
 from PyQt5 import QtCore, QtGui, QtWidgets
 import sys
 
-app = QtWidgets.QApplication(sys.argv)
-MainWindow = QtWidgets.QMainWindow()
-ui = Ui_MainWindow()
-ui.setupUi(MainWindow)
-MainWindow.show()
-
 scenario_info = {
             "road_type": "Motorway",
             "ego_position": "Approaching Intersection",
@@ -28,8 +22,11 @@ threading.Thread(target=monitor_odd, args=[ego_vehicle, emergency_vehicle, world
 threading.Thread(target=set_spectator, args=[world, ego_vehicle]).start()
 
 manual_control(world, ego_vehicle, sensor_data)
-
-
+app = QtWidgets.QApplication(sys.argv)
+MainWindow = QtWidgets.QMainWindow()
+ui = Ui_MainWindow()
+ui.setupUi(MainWindow)
+MainWindow.show()
 sys.exit(app.exec_())
 
 # Cleanup
