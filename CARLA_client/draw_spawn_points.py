@@ -36,18 +36,18 @@ parameters = carla.OpendriveGenerationParameters(
 # world = client.generate_opendrive_world(opendrive_string, parameters)
 
 # Get the world and map
-world = client.load_world('Town01')
+world = client.load_world('Town05')
 carla_map = world.get_map()
 # Get the map's spawn points
 spawn_points = world.get_map().get_spawn_points()
 bp_lib = world.get_blueprint_library()
 
 vehicle_bp = bp_lib.find('vehicle.audi.etron')
-ego_vehicle = world.try_spawn_actor(vehicle_bp, spawn_points[154])
+ego_vehicle = world.try_spawn_actor(vehicle_bp, spawn_points[21])
 
 # Spawn an emergency vehicle
 emergency_bp = world.get_blueprint_library().find('vehicle.carlamotors.firetruck')
-emergency_vehicle = world.spawn_actor(emergency_bp, spawn_points[89])
+emergency_vehicle = world.spawn_actor(emergency_bp, spawn_points[176])
 
 
 first_spawn_point = spawn_points[0]

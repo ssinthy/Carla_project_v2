@@ -1,19 +1,26 @@
 from vehicle_control import *
 from road_info import monitor_odd
 from scenario_info import get_scenario_info
-from scenario_info_manager_gui import Ui_MainWindow
+from GUI.scenario_info_manager_gui import Ui_MainWindow
 import threading
 from PyQt5 import QtCore, QtGui, QtWidgets
 import sys
 
-scenario_info = {
+scenario_info_intersection = {
             "road_type": "Motorway",
             "ego_position": "Approaching Intersection",
             "emv_position": "Cross Road",
             "emv_travel_direction": "Approaches Intersection"
         }
+
+scenario_info_default = {
+            "road_type": "Motorway",
+            "ego_position": "Traffic Lane",
+            "emv_position": "Same Road",
+            "emv_travel_direction": "Approaches from Behind"
+        }
     # Main execution
-carla_town, ego_vehicle_spwan_point, emv_spawn_point = get_scenario_info(scenario_info)
+carla_town, ego_vehicle_spwan_point, emv_spawn_point = get_scenario_info(scenario_info_default)
 
 client, world = initialize_carla(carla_town)
 ego_vehicle, emergency_vehicle = spawn_vehicle(world, client, ego_vehicle_spwan_point, emv_spawn_point)
