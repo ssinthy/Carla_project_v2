@@ -9,6 +9,7 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from start_simulator_handler import start_simulation_pressed_handler
 
 
 class Ui_MainWindow(object):
@@ -147,6 +148,8 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
+        
+        self.start_simulator.clicked.connect(self.start_simulation_pressed_handler)
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
