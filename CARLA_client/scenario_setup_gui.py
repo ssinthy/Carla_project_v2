@@ -18,6 +18,7 @@ def connect_to_carla():
     client.set_timeout(10.0)
     world = client.load_world("Town05")
 
+# TODO Separate ego vehicle and emv spawning
 def spawn_vehicles(ego_spawn_point = 21, emv_spawn_point = 176):
     global global_ego_vehicle, global_emv_vehicle, world, client
     # Spawn an emergency vehicle town 5 spawn point 108 / HH map 154
@@ -58,6 +59,19 @@ def change_vehicle_spawn_point(ego_spawn_point, emv_spawn_point):
     global_emv_vehicle.destroy()
     
     spawn_vehicles(ego_spawn_point, emv_spawn_point)
+    
+def map_user_input_to_carla_map(scenario_info):
+    
+    if scenario_info["road_type"] == "Motorway":
+        if scenario_info["ego_vehicle_position"] == "Traffic Lane":
+            pass
+        elif scenario_info["ego_vehicle_position"] == "Approaching Intersection":
+            pass
+        elif scenario_info["ego_vehicle_position"] == "Approaching T-Junction":
+            pass
+    elif scenario_info["road_type"] == "Expressway":
+        pass
+        
 
 # Function to handle the Start Simulation button click
 def start_simulation():
@@ -68,7 +82,38 @@ def start_simulation():
 
 # Function to handle the Set Up Scenario button click
 def setup_scenario():
+    # Gather all the values from the comboboxes
+    road_type = road_type_cb.get()
+    ego_vehicle_position = ego_vehicle_position_cb.get()
+    emv_position = emv_position_cb.get()
+    emv_direction = emv_direction_cb.get()
+    weather_condition = weather_cb.get()
+    time_of_day = time_of_day_cb.get()
+    safety_distance = safety_distance_sb.get()
+    
+    scenario_info = {
+    "road_type": road_type,
+    "ego_vehicle_position": ego_vehicle_position,
+    "emv_position": emv_position,
+    "emv_direction": emv_direction,
+    "weather_condition": weather_condition,
+    "time_of_day": time_of_day,
+    "safety_distance": safety_distance,
+    }
+    
+    map_user_input_to_carla_map(scenario_info)
     change_vehicle_spawn_point(200, 22)
+
+# Default values for each field
+default_values = {
+    "road_type": "Motorway",
+    "ego_vehicle_position": "Traffic Lane",
+    "emv_position": "Same Road",
+    "emv_direction": "Approaches from Behind",
+    "weather_condition": "Clear",
+    "time_of_day": "Day time",
+    "safety_distance": "0",
+}
 
 # Define the options for each combobox
 road_type_options = ["Motorway", "Expressway"]
@@ -85,32 +130,32 @@ large_font = ("Helvetica", 14)
 # Create and place the widgets
 ttk.Label(root, text="Road Type", font=large_font).grid(row=0, column=0, padx=20, pady=10, sticky=tk.W)
 road_type_cb = ttk.Combobox(root, values=road_type_options, state="readonly", font=large_font)
-road_type_cb.set("Motorway")
+road_type_cb.set(default_values["road_type"])
 road_type_cb.grid(row=0, column=1, padx=20, pady=10)
 
 ttk.Label(root, text="Ego Vehicle Position", font=large_font).grid(row=1, column=0, padx=20, pady=10, sticky=tk.W)
 ego_vehicle_position_cb = ttk.Combobox(root, values=ego_vehicle_position_options, state="readonly", font=large_font)
-ego_vehicle_position_cb.set("Traffic Lane")
+ego_vehicle_position_cb.set(default_values["ego_vehicle_position"])
 ego_vehicle_position_cb.grid(row=1, column=1, padx=20, pady=10)
 
 ttk.Label(root, text="Emergency Vehicle Position", font=large_font).grid(row=2, column=0, padx=20, pady=10, sticky=tk.W)
 emv_position_cb = ttk.Combobox(root, values=emv_position_options, state="readonly", font=large_font)
-emv_position_cb.set("Same Road")
+emv_position_cb.set(default_values["emv_position"])
 emv_position_cb.grid(row=2, column=1, padx=20, pady=10)
 
 ttk.Label(root, text="EMV Travel Direction", font=large_font).grid(row=3, column=0, padx=20, pady=10, sticky=tk.W)
 emv_direction_cb = ttk.Combobox(root, values=emv_direction_options, state="readonly", font=large_font)
-emv_direction_cb.set("Approaches from Behind")
+emv_direction_cb.set(default_values["emv_direction"])
 emv_direction_cb.grid(row=3, column=1, padx=20, pady=10)
 
 ttk.Label(root, text="Weather Condition", font=large_font).grid(row=4, column=0, padx=20, pady=10, sticky=tk.W)
 weather_cb = ttk.Combobox(root, values=weather_options, state="readonly", font=large_font)
-weather_cb.set("Clear")
+weather_cb.set(default_values["weather_condition"])
 weather_cb.grid(row=4, column=1, padx=20, pady=10)
 
 ttk.Label(root, text="Time of Day", font=large_font).grid(row=5, column=0, padx=20, pady=10, sticky=tk.W)
 time_of_day_cb = ttk.Combobox(root, values=time_of_day_options, state="readonly", font=large_font)
-time_of_day_cb.set("Day time")
+time_of_day_cb.set(default_values["time_of_day"])
 time_of_day_cb.grid(row=5, column=1, padx=20, pady=10)
 
 ttk.Label(root, text="Safety Distance (m)", font=large_font).grid(row=6, column=0, padx=20, pady=10, sticky=tk.W)
