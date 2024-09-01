@@ -51,7 +51,7 @@ def spawn_vehicles(ego_spawn_point = 21, emv_spawn_point = 176):
         
     global_emv_vehicle.set_autopilot(True, traffic_manager_port)
     
-def re_locate_vehicles(ego_spawn_point, emv_spawn_point):
+def change_vehicle_spawn_point(ego_spawn_point, emv_spawn_point):
     global global_ego_vehicle, global_emv_vehicle
     
     global_ego_vehicle.destroy()
@@ -68,7 +68,7 @@ def start_simulation():
 
 # Function to handle the Set Up Scenario button click
 def setup_scenario():
-    re_locate_vehicles(200, 22)
+    change_vehicle_spawn_point(200, 22)
 
 # Define the options for each combobox
 road_type_options = ["Motorway", "Expressway"]
