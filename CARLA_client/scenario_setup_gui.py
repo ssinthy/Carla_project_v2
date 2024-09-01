@@ -1,18 +1,74 @@
 import tkinter as tk
 from tkinter import ttk
+import carla
 
 # Initialize the main window
 root = tk.Tk()
 root.title("ScenarioInfoManager")
 root.geometry("600x500")  # Set the window size
 
+global_ego_vehicle = None
+global_emv_vehicle = None
+world = None
+client = None
+
+def connect_to_carla():
+    global world, client
+    client = carla.Client('localhost', 2000)
+    client.set_timeout(10.0)
+    world = client.load_world("Town05")
+
+def spawn_vehicles(ego_spawn_point = 21, emv_spawn_point = 176):
+    global global_ego_vehicle, global_emv_vehicle, world, client
+    # Spawn an emergency vehicle town 5 spawn point 108 / HH map 154
+    spawn_points = world.get_map().get_spawn_points()
+    bp_lib = world.get_blueprint_library()
+    vehicle_bp = bp_lib.find('vehicle.audi.etron')
+    emergency_bp = world.get_blueprint_library().find('vehicle.carlamotors.firetruck')
+    
+    global_ego_vehicle = world.try_spawn_actor(vehicle_bp, spawn_points[ego_spawn_point])
+    global_emv_vehicle = world.spawn_actor(emergency_bp, spawn_points[emv_spawn_point])
+    
+    # Set spectator manual navigation
+    spectator = world.get_spectator()
+    transform = carla.Transform(global_ego_vehicle.get_transform().transform(carla.Location(x=-20, y= 0, z=5)), global_ego_vehicle.get_transform().rotation)
+    spectator.set_transform(transform)
+   
+    global_ego_vehicle.set_autopilot(True)
+    
+    traffic_manager = client.get_trafficmanager()
+    traffic_manager_port = traffic_manager.get_port()
+
+    # Set the vehicle to drive 30% faster than the current speed limit
+    traffic_manager.vehicle_percentage_speed_difference(global_emv_vehicle, -30)  # No speed variation
+    
+    # Make the vehicle ignore traffic lights
+    traffic_manager.ignore_lights_percentage(global_emv_vehicle, 100)
+    
+    # Turn on the vehicle's (emergency lights)
+    from carla import VehicleLightState as vls
+    global_emv_vehicle.set_light_state(carla.VehicleLightState(vls.Special1))
+        
+    global_emv_vehicle.set_autopilot(True, traffic_manager_port)
+    
+def re_locate_vehicles(ego_spawn_point, emv_spawn_point):
+    global global_ego_vehicle, global_emv_vehicle
+    
+    global_ego_vehicle.destroy()
+    global_emv_vehicle.destroy()
+    
+    spawn_vehicles(ego_spawn_point, emv_spawn_point)
+
 # Function to handle the Start Simulation button click
 def start_simulation():
-    print("Simulation Started")
+    
+    connect_to_carla()
+    
+    spawn_vehicles()
 
 # Function to handle the Set Up Scenario button click
 def setup_scenario():
-    print("Scenario Set Up")
+    re_locate_vehicles(200, 22)
 
 # Define the options for each combobox
 road_type_options = ["Motorway", "Expressway"]
