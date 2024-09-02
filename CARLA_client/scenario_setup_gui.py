@@ -12,6 +12,29 @@ global_emv_vehicle = None
 world = None
 client = None
 
+# Default values for each field
+default_values = {
+    "road_type": "Motorway",
+    "ego_vehicle_position": "Traffic Lane",
+    "emv_position": "Same Road",
+    "emv_direction": "Approaches from Behind",
+    "weather_condition": "Clear",
+    "time_of_day": "Day time",
+    "safety_distance": "0",
+}
+
+# Dictionary to store previous values of comboboxes and spinbox
+previous_values = default_values.copy()
+
+# Define the options for each combobox
+road_type_options = ["Motorway", "Expressway"]
+ego_vehicle_position_options = ["Traffic Lane", "Approaching Intersection", "Approaching T-Junction"]
+emv_position_options = ["Same Road", "Parallel Road", "Opposite Road", "Cross Road"]
+emv_direction_options = ["Approaches from Behind", "As Lead Vehicle", "Approaches from Right Lane", "Approaches from Left Lane", "Approaches on Opposite Lane", 
+                         "Approaches Intersection", "Approaches T-Junction"]
+weather_options = ["Clear", "Cloudy", "Light Rain", "Moderate Rain", "Heavy Rain"]
+time_of_day_options = ["Day time", "Night time"]
+
 def connect_to_carla():
     global world, client
     client = carla.Client('localhost', 2000)
@@ -19,16 +42,12 @@ def connect_to_carla():
     world = client.load_world("Town05")
 
 # TODO Separate ego vehicle and emv spawning
-def spawn_vehicles(ego_spawn_point = 21, emv_spawn_point = 176):
-    global global_ego_vehicle, global_emv_vehicle, world, client
+def spawn_ego_vehicle(ego_spawn_point = 21):
+    global global_ego_vehicle, world, client
     # Spawn an emergency vehicle town 5 spawn point 108 / HH map 154
     spawn_points = world.get_map().get_spawn_points()
-    bp_lib = world.get_blueprint_library()
-    vehicle_bp = bp_lib.find('vehicle.audi.etron')
-    emergency_bp = world.get_blueprint_library().find('vehicle.carlamotors.firetruck')
-    
+    vehicle_bp = world.get_blueprint_library().find('vehicle.audi.etron')
     global_ego_vehicle = world.try_spawn_actor(vehicle_bp, spawn_points[ego_spawn_point])
-    global_emv_vehicle = world.spawn_actor(emergency_bp, spawn_points[emv_spawn_point])
     
     # Set spectator manual navigation
     spectator = world.get_spectator()
@@ -37,6 +56,12 @@ def spawn_vehicles(ego_spawn_point = 21, emv_spawn_point = 176):
    
     global_ego_vehicle.set_autopilot(True)
     
+def spawn_emergency_vehicle(emv_spawn_point = 176):
+    global global_ego_vehicle, global_emv_vehicle, world, client
+    spawn_points = world.get_map().get_spawn_points()
+    
+    emergency_bp = world.get_blueprint_library().find('vehicle.carlamotors.firetruck')
+    global_emv_vehicle = world.spawn_actor(emergency_bp, spawn_points[emv_spawn_point])
     traffic_manager = client.get_trafficmanager()
     traffic_manager_port = traffic_manager.get_port()
 
@@ -58,7 +83,8 @@ def change_vehicle_spawn_point(ego_spawn_point, emv_spawn_point):
     global_ego_vehicle.destroy()
     global_emv_vehicle.destroy()
     
-    spawn_vehicles(ego_spawn_point, emv_spawn_point)
+    spawn_ego_vehicle(ego_spawn_point)
+    spawn_emergency_vehicle(emv_spawn_point)
     
 def map_user_input_to_carla_map(scenario_info):
     
@@ -72,13 +98,15 @@ def map_user_input_to_carla_map(scenario_info):
     elif scenario_info["road_type"] == "Expressway":
         pass
         
-
 # Function to handle the Start Simulation button click
 def start_simulation():
     
     connect_to_carla()
     
-    spawn_vehicles()
+    spawn_ego_vehicle()
+    
+    spawn_emergency_vehicle()
+    
 
 # Function to handle the Set Up Scenario button click
 def setup_scenario():
@@ -103,26 +131,6 @@ def setup_scenario():
     
     map_user_input_to_carla_map(scenario_info)
     change_vehicle_spawn_point(200, 22)
-
-# Default values for each field
-default_values = {
-    "road_type": "Motorway",
-    "ego_vehicle_position": "Traffic Lane",
-    "emv_position": "Same Road",
-    "emv_direction": "Approaches from Behind",
-    "weather_condition": "Clear",
-    "time_of_day": "Day time",
-    "safety_distance": "0",
-}
-
-# Define the options for each combobox
-road_type_options = ["Motorway", "Expressway"]
-ego_vehicle_position_options = ["Traffic Lane", "Approaching Intersection", "Approaching T-Junction"]
-emv_position_options = ["Same Road", "Parallel Road", "Opposite Road", "Cross Road"]
-emv_direction_options = ["Approaches from Behind", "As Lead Vehicle", "Approaches from Right Lane", "Approaches from Left Lane", "Approaches on Opposite Lane", 
-                         "Approaches Intersection", "Approaches T-Junction"]
-weather_options = ["Clear", "Cloudy", "Light Rain", "Moderate Rain", "Heavy Rain"]
-time_of_day_options = ["Day time", "Night time"]
 
 # Define a larger font
 large_font = ("Helvetica", 14)
